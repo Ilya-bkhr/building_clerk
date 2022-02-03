@@ -154,7 +154,7 @@ def format_costs_report(costs_per_date):
 def display_data(report_result):
     '''Подготовка отчета за выбранный период в текстовом виде'''
     final_text = f"Операции:{EMOJI['aprove']}\n\n"
-    deposit_text = "\nПополнения"
+    deposit_text = "\nПополнения\n"
     for key in report_result:
         data = get_deposit_report(key)
         deposit_per_date = format_deposit_report(data)
