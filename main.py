@@ -19,7 +19,7 @@ logging.basicConfig(filename='bot.log', level=logging.INFO)
 
 
 def main():
-    locale.setlocale(category=locale.LC_ALL, locale="Russian")
+    locale.setlocale(category=locale.LC_ALL, locale='ru_RU.utf-8')
     my_bot = Updater(settings.API_KEY, use_context=True)
     dp = my_bot.dispatcher
     deposit_money = ConversationHandler(
