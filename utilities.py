@@ -154,7 +154,7 @@ def format_costs_report(costs_per_date):
 def display_data(report_result):
     '''Подготовка отчета за выбранный период в текстовом виде'''
     final_text = f"Операции:{EMOJI['aprove']}\n\n"
-    deposit_text = "Пополнения\n"
+    deposit_text = "\nПополнения"
     for key in report_result:
         data = get_deposit_report(key)
         deposit_per_date = format_deposit_report(data)
@@ -162,7 +162,7 @@ def display_data(report_result):
         text_category_price_total = format_costs_report(array)
         text_per_day = [f"{key.strftime('%d %b')} {EMOJI['calendar']}",
                         f"<b>Расходы</b> {text_category_price_total}"]
-        deposit_text = f"<b>Пополнения</b> {deposit_per_date}\n"
+        deposit_text = f"<b>\nПополнения</b> {deposit_per_date}\n"
         final_text = final_text + '\n'.join(text_per_day) + deposit_text
     return final_text
 
