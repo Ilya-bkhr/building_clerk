@@ -30,7 +30,7 @@ def welcome(update, context):
 def add_costs(update, context):
     text = update.message.text
     items = text.lower().split()
-    sum = items[2]
+    sum = int(items[2])
     category = items[1]
     begin_of_day = create_begin_of_day()
     total_sum = get_price_per_category(items[1]) + sum
