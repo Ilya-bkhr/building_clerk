@@ -10,10 +10,10 @@ db = client[settings.MONGO_DB]
 def update_add_transaction(update, sum, date):
     '''Обновляет информацию о пополнениях в базе'''
     db.deposit.update_one(
-        {'id': update.effective_user.id},
+        {'id': 1},
         {'$push': {'transaction_info': {'date': date, 'amount': sum}}},
         True)
-
+ 
 
 #добавить вывод существующих категорий для удобного ввода
 def get_category_list(db):

@@ -67,7 +67,7 @@ def check_users_sum(update, context):
 def add_deposit(update, context):
     sum = check_users_sum(update, context)
     update_add_transaction(update, sum, datetime.datetime.now())
-    balance = get_total_deposit(update.effective_user.id)
+    balance = get_total_deposit(1)
     text = [
         f"<b>Баланс пополнен на сумму:</b> {format_num(sum)} {EMOJI['receipt']}",
         f"<b>Баланс на сегодня:</b> {format_num(balance)} {EMOJI['money']}"
@@ -80,7 +80,7 @@ def add_deposit(update, context):
 
 
 def get_balance(update, context):
-    deposit = get_total_deposit(update.effective_user.id)
+    deposit = get_total_deposit(1)
     cost = get_total_costs(total=True)
     balance = deposit - cost
     date = datetime.datetime.now()
