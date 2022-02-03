@@ -15,4 +15,4 @@ tornado==6.1
 tzdata==2021.5
 tzlocal==4.1
 humanize==3.13.1
-emoji-1.6.3
+emoji==1.6.3
