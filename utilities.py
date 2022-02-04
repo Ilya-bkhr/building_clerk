@@ -35,7 +35,7 @@ def prepare_deposit_list(deposit_data):
         counter += 1
     return {'deposit_list': text, 'total_deposit': total_deposit}
 
-# 2122000654
+
 def prepare_deposit():
     '''Результирующая подготовка текста для вывода всех пополнений'''
     data = list(db.deposit.find({}, {'transaction_info': 1, '_id': 0}))
@@ -64,7 +64,7 @@ def create_begin_of_day():
 
 def day_broads(date):
     """Принимает объект datetime возвращаяет начальную конечную секунду дня"""
-    start_time = dt.time(0, 1)
+    start_time = dt.time(0, 0)
     end_time = dt.time(23, 59)
     day_begin = dt.datetime.combine(date, start_time)
     day_end = dt.datetime.combine(date, end_time)
@@ -96,7 +96,6 @@ def check_comment(items, category, begin_of_day, sum):
         comment = 'Не указан'
     return comment
 
-import pprint
 def period_of_report(callback_data):
     '''Примнимает количество дней из callback_data возвращает словарь, дата: траты по категории'''
     data_info = translate_date(callback_data)
