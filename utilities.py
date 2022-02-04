@@ -35,7 +35,7 @@ def prepare_deposit_list(deposit_data):
         counter += 1
     return {'deposit_list': text, 'total_deposit': total_deposit}
 
-
+# 2122000654
 def prepare_deposit():
     '''Результирующая подготовка текста для вывода всех пополнений'''
     data = list(db.deposit.find({}, {'transaction_info': 1, '_id': 0}))
@@ -64,7 +64,7 @@ def create_begin_of_day():
 
 def day_broads(date):
     """Принимает объект datetime возвращаяет начальную конечную секунду дня"""
-    start_time = dt.time(0, 0)
+    start_time = dt.time(0, 1)
     end_time = dt.time(23, 59)
     day_begin = dt.datetime.combine(date, start_time)
     day_end = dt.datetime.combine(date, end_time)
@@ -96,7 +96,7 @@ def check_comment(items, category, begin_of_day, sum):
         comment = 'Не указан'
     return comment
 
-
+import pprint
 def period_of_report(callback_data):
     '''Примнимает количество дней из callback_data возвращает словарь, дата: траты по категории'''
     data_info = translate_date(callback_data)
@@ -107,16 +107,13 @@ def period_of_report(callback_data):
         broad = day_broads(report_day)
         current_day_report = db.costs.aggregate([
             {'$unwind': '$transaction_info'},
-            {'$match': {'transaction_info.date':
-                {'$gt': broad['day_begin'], '$lte': broad['day_end']}}},
-            {'$group': {'_id': '$type', 'total_cost':
-                {'$sum': '$transaction_info.amount'}}}
+            {'$match': {'transaction_info.date': {'$gt': broad['day_begin'], '$lte': broad['day_end']}}},
+            {'$group': {'_id': '$type', 'total_cost': {'$sum': '$transaction_info.amount'}}}
         ])
         values = {report_day: list(current_day_report)}
         report_result.update(values)
         report_day += dt.timedelta(days=1)
     return report_result
-
 
 def format_deposit_report(data):
     '''Подготовка списка (в текстовом виде) пополнений'''

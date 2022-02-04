@@ -32,7 +32,7 @@ def add_costs(update, context):
     items = text.lower().split()
     sum = int(items[2])
     category = items[1]
-    begin_of_day = create_begin_of_day()
+    begin_of_day = datetime.datetime.now()
     total_sum = get_price_per_category(items[1]) + sum
     comment = check_comment(items, category, begin_of_day, sum)
     text = [
