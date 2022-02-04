@@ -12,7 +12,7 @@ from config import MAIN_KEYBOARD
 from handlers import (copy_past, add_costs, welcome, deposit,
                       add_deposit, get_balance, total_cost_per_category,
                       total_deposit_transaction, make_report, get_report,
-                      exception)
+                      exception, get_info)
 
 
 logging.basicConfig(filename='bot.log', level=logging.INFO)
@@ -34,6 +34,7 @@ def main():
     dp.add_handler(deposit_money)
     dp.add_handler(CommandHandler('start', welcome))
     dp.add_handler(CommandHandler('add', add_costs))
+    dp.add_handler(CommandHandler('info', get_info))
     dp.add_handler(MessageHandler(Filters.regex(MAIN_KEYBOARD['COSTS']), total_cost_per_category))
     dp.add_handler(MessageHandler(Filters.regex(MAIN_KEYBOARD['ENTRIES']), total_deposit_transaction))
     dp.add_handler(MessageHandler(Filters.regex(MAIN_KEYBOARD['BALANCE']), get_balance))

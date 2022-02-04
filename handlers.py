@@ -8,7 +8,7 @@ from telegram import ParseMode
 from db import (update_add_transaction, get_total_costs,
                 get_total_deposit, get_price_per_category)
 from keyboards import  main_keyboard, period_keyboard
-from config import EMOJI, WELCOME_TEXT
+from config import EMOJI, WELCOME_TEXT, INFO_TEXT
 from utilities import (format_text_costs, prepare_deposit, format_num,
                        period_of_report, display_data, create_begin_of_day,
                        check_comment)
@@ -17,6 +17,14 @@ from utilities import (format_text_costs, prepare_deposit, format_num,
 def copy_past(update, context):
     text = update.message.text
     update.message.reply_text(text)
+
+
+def get_info(update,context):
+    update.message.reply_text(
+        text = '\n\n'.join(INFO_TEXT),
+        reply_markup=main_keyboard(),
+        parse_mode=ParseMode.HTML
+        )
 
 
 def welcome(update, context):
